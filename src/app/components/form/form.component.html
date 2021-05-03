@@ -1,0 +1,3 @@
+<div class="form-wrapper">
+  <formio [form]="myForm" (change)="checkChanges($event)" [refresh]="refreshFormEmitter" (submit)="exportJSON($event)" [options]="optionsJSON"></formio>
+</div>

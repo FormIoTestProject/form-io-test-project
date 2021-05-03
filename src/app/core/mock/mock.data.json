@@ -1,0 +1,24 @@
+{
+  "success": "true",
+  "total": "3",
+  "mappings": [
+    {
+      "role": "Administrators",
+      "role_id": "admins",
+      "role_description": "Can Manage Content and Users",
+      "created_date": "2020-02-19T23:54:28.130Z"
+    },
+    {
+      "role": "Authors",
+      "role_id": "authors",
+      "role_description": "",
+      "created_date": "2020-02-19T23:54:28.204Z"
+    },
+    {
+      "role": "Consumers",
+      "role_id": "consumers",
+      "role_description": "Can Execute Reports and Dashboards",
+      "created_date": "2020-02-19T23:54:28.209Z"
+    }
+  ]
+}
