@@ -19,16 +19,20 @@ export class FormComponent implements OnInit {
         const submitData = submission.data;
         const selectedOptions = submitData.values_select;
         const dataToSubmit = {
-          values_select: selectedOptions
+          roles: selectedOptions,
+          roleData: [],
+          submit: submitData.submit
         };
 
         for (const optionName of selectedOptions) {
-          const checkboxKey =  `${ optionName }_${ FormElelementTypes.CHECKBOX }`;
-          for (const [key, value] of Object.entries(submitData)) {
-            if (key === checkboxKey && value) {
-              dataToSubmit[key] = submitData[`${ optionName }_${ FormElelementTypes.TEXTFIELD }`];
-            }
-          }
+          const checkboxValue =  submitData[`${ optionName }_${ FormElelementTypes.CHECKBOX }`];
+          const textfieldValue =  checkboxValue ? submitData[`${ optionName }_${ FormElelementTypes.TEXTFIELD }`] : null;
+
+          dataToSubmit.roleData.push({
+            role: optionName,
+            textfieldValue,
+            checkboxValue
+          })
         }
 
         submission.data = dataToSubmit;
@@ -180,9 +184,14 @@ export class FormComponent implements OnInit {
     });
   }
 
+  submitForm(event: any): void {
+    this.exportJSON(event.data);
+  }
 
-  exportJSON(event: any): void {
-    const dataStr = JSON.stringify(event.data);
+  exportJSON(data: any): void {
+    // that is just an example of what we can do with data submitted from FORM.IO
+
+    const dataStr = JSON.stringify(data);
     const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
     const exportFileDefaultName = 'data.json';
     const linkElement = document.createElement('a');
